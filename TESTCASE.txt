@@ -1,0 +1,23 @@
+root
+yuyeon_990312_session_login_5xK39Sd4cdEBksAFL
+
+
+user1
+password123
+
+curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d "{\"username\": \"user1\", \"password\": \"password123\"}"
+
+
+curl -X POST http://localhost:3000/register -H "Content-Type: application/json" -d "{\"username\": \"user1\", \"password\": \"password123\"}"
+
+
+
+
+curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d "{\"username\": \"user2\", \"password\": \"password12345\"}"
+
+
+curl -X POST http://localhost:3000/register -H "Content-Type: application/json" -d "{\"username\": \"user2\", \"password\": \"password12345\"}"
+
+
+
+http://localhost:3000/login

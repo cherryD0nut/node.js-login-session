@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대시보드</title>
+</head>
+<body>
+    <h1>대시보드</h1>
+    <div id="message"></div>
+    <div id="data"></div>
+    <button onclick="logout()">로그아웃</button>
+
+    <script>
+        // 대시보드에 접근 시 세션 확인
+        fetch("http://localhost:3000/protected", {
+            method: "GET",
+            credentials: "include"  // 쿠키를 포함하여 요청
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.message) {
+                    document.getElementById("message").textContent = data.message;
+                    document.getElementById("data").textContent = data.data;
+                }
+            });
+        
+        function logout() {
+            fetch('/logout', { 
+                method: 'POST',
+                credentials: 'include' // 쿠키 포함 (세션 삭제용)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                document.cookie = "sessionId=; Max-Age=0; path=/"; // 쿠키 삭제
+                window.location.href = "/login"; // 로그인 페이지로 이동
+            })
+        }
+    </script>
+</body>
+</html>
